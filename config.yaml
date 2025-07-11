@@ -1,0 +1,19 @@
+# Model configuration
+input_dim: [640, 640]
+num_classes: 1  # Single class for road damage
+
+# Training hyperparameters
+lr: 0.001
+batch_size: 4
+epochs: 50
+
+# Evaluation parameters
+eval_batch_size: 8
+checkpoint_dir: checkpoints
+
+# Dataset paths
+data_path: /mnt/d/GIT/Portfolio/Road_Detect/datasets/processed
+
+# Class definitions
+classes:
+  - pothole

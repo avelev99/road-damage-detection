@@ -1,0 +1,88 @@
+# ===========================
+# Python Artifacts
+# ===========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual Environments
+env/
+venv/
+
+# Python environment/config files
+*.env
+.env
+
+# ===========================
+# Jupyter Notebook Artifacts
+# ===========================
+.ipynb_checkpoints/
+
+# ===========================
+# IDE/Editor Files
+# ===========================
+.vscode/
+.idea/
+
+# ===========================
+# OS-generated Files
+# ===========================
+.DS_Store
+.Trashes
+Thumbs.db
+
+# ===========================
+# Datasets (ignore all data, keep scripts/configs)
+# ===========================
+datasets/raw/
+datasets/processed/
+# Allow dataset setup scripts and config files
+!datasets/setup.py
+!datasets/raw/dataset/dataset.yaml
+
+# ===========================
+# Model Outputs, Checkpoints, and Logs
+# ===========================
+runs/
+checkpoints/
+output/
+*.pth
+*.pt
+*.ckpt
+*.h5
+*.onnx
+*.tflite
+*.log
+
+# ===========================
+# Temporary and Miscellaneous Files
+# ===========================
+*.tmp
+*.swp
+*.bak
+
+# ===========================
+# Project-specific Sensitive Files
+# ===========================
+kaggle.json
+# Add other API keys/secrets here if needed
+
+# ===========================
+# Explicitly Allow Essential Files for Reproducibility
+# ===========================
+!config.yaml
+!requirements.txt
+!README.md
+!CONTRIBUTING.md
+!docs/
+!create_demos.py
+!train.py
+!model.py
+!eval.py
+!utils.py
+
+# ===========================
+# End of .gitignore
+# ===========================
