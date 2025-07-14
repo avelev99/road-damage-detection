@@ -2,21 +2,21 @@
   <img src="assets/banner.png" alt="Road Damage Detection Banner" style="max-width:100%;">
 </div>
 
-# Road Damage Detection: Where Computer Vision Meets Asphalt
+# Road Damage Detection
 
-> "I built this after watching YOLOv5 choke on foggy roads - turns out He et al.'s residual connections (CVPR'16) still beat transformer hype for edge cases. Pro tip: thermal imaging is cheating, but I'll take it."
+This project demonstrates a road damage detection model that leverages both RGB and thermal imagery for reliable performance in challenging conditions.
 
 ## What I Built Better
 
 ![Dual-Backbone](https://img.shields.io/badge/Architecture-Dual_Backbone-blue)
-![VRAM](https://img.shields.io/badge/VRAM-0.58GB-green) <!-- Smaller than your cat meme -->
-![FPS](https://img.shields.io/badge/FPS-45-orange) <!-- Beats my grandma's reaction time -->
-![Accuracy](https://img.shields.io/badge/mAP@0.5-82.6%25-blue) <!-- Because 82.7% would be showing off -->
+![VRAM](https://img.shields.io/badge/VRAM-0.58GB-green)
+![FPS](https://img.shields.io/badge/FPS-45-orange)
+![Accuracy](https://img.shields.io/badge/mAP@0.5-82.6%25-blue)
 
-- **Dual-Backbone Architecture**: Parallel processing of RGB/thermal with ResNet18 - because why choose when you can have both? Inspired by Huang's multi-modal fusion (ECCV'18)
-- **Spatial Attention Fusion (SAF)**: My custom module that slaps an attention mask on RGB features - 23% mAP gain over naive concat [See Diagram](#spatial-attention-fusion)
-- **VRAM Efficiency**: Crunched to 0.58GB at 640x640 - channel pruning that'd make LeCun proud
-- **All-Weather Reliability**: Handles fog/night like a drunk college student handles bad decisions - surprisingly well
+- **Dual-Backbone Architecture**: Parallel processing of RGB and thermal images with ResNet18, inspired by Huang's multi-modal fusion (ECCV'18).
+- **Spatial Attention Fusion (SAF)**: Custom module that applies an attention mask to RGB features, gaining 23% mAP over naive concatenation [See Diagram](#spatial-attention-fusion).
+- **VRAM Efficiency**: Reduced to 0.58GB at 640x640 through channel pruning.
+- **All-Weather Reliability**: Performs reliably in foggy and nighttime conditions.
 
 <a name="spatial-attention-fusion"></a>
 ```mermaid
@@ -30,11 +30,11 @@ E --> F[Detection Head]
 
 ## How I Stack Against the Competition
 
-### Why My Model > YOLO Everything
-- **23% higher mAP** than YOLOv5 - because attention beats brute force
-- **4× less VRAM** - proving good things come in small packages
-- **85% accuracy in fog** - where others see mist, I see potholes
-- **45 FPS on Jetson** - real-time enough to dodge roadkill
+### Advantages Over YOLO Models
+- **23% higher mAP** than YOLOv5 using attention-based fusion.
+- **4× less VRAM** enabling deployment on small devices.
+- **85% accuracy in fog** for reliable detection in low-visibility conditions.
+- **45 FPS on Jetson** enabling real-time performance.
 
 ### Performance That Speaks for Itself
 | Metric          | YOLOv5 | YOLOv8 | My Model |
@@ -43,14 +43,14 @@ E --> F[Detection Head]
 | **FPS (1080p)** | 38     | 42     | **45**   |
 | **VRAM**        | 1.8GB  | 2.1GB  | **0.58GB**|
 
-[Full technical smackdown](docs/technical_comparison.md)
+[Full technical comparison](docs/technical_comparison.md)
 
-## Why This Isn't Just Another Portfolio Project
+## Key Features
 Built for engineers who appreciate:
-- **Architecture porn**: Custom SAF module that actually works
-- **Edge optimization**: Runs on a toaster if needed
-- **Reproducibility**: Because "it worked on my machine" is amateur hour
-- **Brutal honesty**: I document failures too (see debugging guide)
+- **Architecture documentation**: Detailed description of the custom SAF module.
+- **Edge optimization**: Supports low-power hardware.
+- **Reproducibility**: Provides configuration for consistent results.
+- **Detailed troubleshooting**: Includes guidance for common issues.
 
 **Where We're Headed**:
 ```mermaid
@@ -59,11 +59,11 @@ gantt
     dateFormat  YYYY-MM-DD
     section Near-term
     ROS2 Integration       :active, 2025-07-01, 30d
-    Raspberry Pi Optimization :2025-07-15, 30d  <!-- Challenge accepted -->
+    Raspberry Pi Optimization :2025-07-15, 30d 
     section Mid-term
-    Panoptic Segmentation  :2025-08-15, 45d  <!-- Because bounding boxes are so 2023 -->
+    Panoptic Segmentation  :2025-08-15, 45d 
     section Long-term
-    Real-time Cloud Integration :2025-10-01, 60d <!-- When 5G finally works -->
+    Real-time Cloud Integration :2025-10-01, 60d
 ```
 
 ## Demo Visualizations
@@ -79,18 +79,18 @@ See the model's predictions evolve in real-time:
 *Note: These animated GIFs show the transition from original image → model prediction*
 
 ## For Fellow Engineers
-- **Architecture Deep Dive**: [How SAF works](docs/walkthrough.md) (spoiler: it's not magic)
+- **Architecture Deep Dive**: [How SAF works](docs/walkthrough.md)
 - **Benchmarks**: [Technical comparison](docs/technical_comparison.md) | [Raw numbers](docs/evaluation_results.md)
-- **Reproduction Kit**: [Training instructions](docs/tutorials/reproduction.md) - works better than my coffee maker
+- **Reproduction Kit**: [Training instructions](docs/tutorials/reproduction.md)
 
 ---
 
-### Documentation That Doesn't Suck
+### Documentation
 - [System Walkthrough](docs/walkthrough.md) - No fluff, just architecture
 - Tutorials:
-  - [Tweaking SAF](docs/tutorials/extending.md) - Because defaults are for beginners
-  - [Reproduction Guide](docs/tutorials/reproduction.md) - For the "but does it really work?" crowd
-  - [Debugging War Stories](docs/tutorials/debugging.md) - Learn from my mistakes
+  - [Tweaking SAF](docs/tutorials/extending.md) - Guide to customizing parameters
+  - [Reproduction Guide](docs/tutorials/reproduction.md) - Step-by-step instructions
+  - [Debugging Guide](docs/tutorials/debugging.md) - Troubleshooting tips
 
 ## Deployment Options
 
@@ -117,19 +117,19 @@ python package.py --platform aws_lambda
 sam deploy --guided
 ```
 
-### Get Your Hands Dirty
+### Quick Evaluation
 To evaluate a trained model:
 ```bash
-python train.py  <!-- Where the magic happens -->
-python eval.py --checkpoint path/to/checkpoint.pth --output eval_results  <!-- Moment of truth -->
+python train.py
+python eval.py --checkpoint path/to/checkpoint.pth --output eval_results
 ```
 
 ### Metrics That Matter
-- mAP (mean Average Precision) - the only metric that counts
-- VRAM usage - because RAM is money
-- FPS - real-time or go home
+- mAP (mean Average Precision).
+- VRAM usage.
+- Frames per second (FPS).
 
 ### TensorBoard Integration
 ```bash
-tensorboard --logdir eval_results/tensorboard  <!-- For pretty graphs -->
+tensorboard --logdir eval_results/tensorboard
 ```
