@@ -14,7 +14,7 @@ class SpatialAttentionFusion(nn.Module):
             nn.Conv2d(in_channels, out_channels, 3, padding=1),
             nn.ReLU(),
             nn.Conv2d(out_channels, out_channels, 1),
-            nn.Sigmoid()  # Because everything should be between 0 and 1, unlike my coffee intake
+            nn.Sigmoid()  # Activation to bound values between 0 and 1
         )
     
     def forward(self, rgb, thermal):
@@ -81,7 +81,7 @@ class DualModel(nn.Module):
         thermal_feat = self.thermal_features(thermal)
         
         # Fuse features with spatial attention
-        fused = self.saf(rgb_feat, thermal_feat)  # Inspired by Wang et al.'s CBAM, minus the FLOPs
+        fused = self.saf(rgb_feat, thermal_feat)  # Inspired by Wang et al.'s CBAM with reduced computational cost
         
-        # Detection head - where we separate road from not-road
+        # Detection head for road damage predictions
         return self.detection_head(fused)
